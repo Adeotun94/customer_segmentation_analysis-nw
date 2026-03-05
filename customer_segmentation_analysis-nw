@@ -1,0 +1,23 @@
+Total Spent per Customer:
+SELECT c.customer_id, c.first_name, c.last_name,
+       SUM(s.amount) AS total_spent
+FROM customers c
+JOIN sales s ON c.customer_id = s.customer_id
+GROUP BY c.customer_id, c.first_name, c.last_name
+ORDER BY total_spent DESC;
+
+Average Order Value:
+SELECT c.customer_id, c.first_name, c.last_name,
+       AVG(s.amount) AS avg_order_value
+FROM customers c
+JOIN sales s ON c.customer_id = s.customer_id
+GROUP BY c.customer_id, c.first_name, c.last_name
+ORDER BY avg_order_value DESC;
+
+Purchase Frequency:
+SELECT c.customer_id, c.first_name, c.last_name,
+       COUNT(s.order_id) AS purchase_count
+FROM customers c
+JOIN sales s ON c.customer_id = s.customer_id
+GROUP BY c.customer_id, c.first_name, c.last_name
+ORDER BY purchase_count DESC;
